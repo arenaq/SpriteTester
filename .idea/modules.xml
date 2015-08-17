@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Sprite Tester/Sprite Tester.iml" filepath="$PROJECT_DIR$/Sprite Tester/Sprite Tester.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpriteTester.iml" filepath="$PROJECT_DIR$/SpriteTester.iml" />
+    </modules>
+  </component>
+</project>
+
