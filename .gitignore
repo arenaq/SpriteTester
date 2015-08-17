@@ -25,3 +25,10 @@ proguard/
 
 # Log Files
 *.log
+
+# IntelliJ IDEA user specific settings
+.idea/workspace.xml
+.idea/tasks.xml
+
+# Apple OS X folder custom attributes
+.DS_Store
