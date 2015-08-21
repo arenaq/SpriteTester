@@ -32,6 +32,7 @@ public class SnakeRenderer implements GLSurfaceView.Renderer {
 
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 
+        snake.move(gl);
         snake.draw(gl);
 
         // zde se bude volat ve?ker? dal?? vykreslov?n? hry
