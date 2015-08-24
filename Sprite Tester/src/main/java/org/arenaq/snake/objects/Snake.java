@@ -5,8 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLUtils;
 
-import org.arenaq.snake.Engine;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -24,7 +22,8 @@ public class Snake {
     private FloatBuffer textureBuffer;
     private ByteBuffer indexBuffer;
     private int[] textures = new int[1];
-    private float x = 0, y = 0;
+    public int action = 0;
+    public float x = 0, y = 0.04f;
     public float speed = 0.03f;
 
     private float vertices[] = {
@@ -82,36 +81,6 @@ public class Snake {
         gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
         gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
         gl.glDisable(GL10.GL_CULL_FACE);
-    }
-
-    public void move(GL10 gl) {
-        gl.glMatrixMode(GL10.GL_MODELVIEW);
-        gl.glLoadIdentity();
-        gl.glPushMatrix();
-        gl.glScalef(.25f, .25f, 1f);
-
-        switch (Engine.action) {
-            case Engine.SNAKE_UP:
-                y += speed;
-                break;
-            case Engine.SNAKE_RIGHT:
-                x += speed;
-                break;
-            case Engine.SNAKE_DOWN:
-                y -= speed;
-                break;
-            case Engine.SNAKE_LEFT:
-                x -= speed;
-                break;
-        }
-
-        gl.glTranslatef(1.0f, 0f, 0f);
-        gl.glMatrixMode(GL10.GL_TEXTURE);
-        gl.glLoadIdentity();
-        gl.glTranslatef(x, y, 0.0f);
-
-        gl.glPopMatrix();
-        gl.glLoadIdentity();
     }
 
     public void loadTexture(GL10 gl,int texture, Context context) {

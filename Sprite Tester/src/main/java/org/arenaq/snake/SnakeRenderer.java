@@ -32,8 +32,7 @@ public class SnakeRenderer implements GLSurfaceView.Renderer {
 
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 
-        snake.move(gl);
-        snake.draw(gl);
+        drawSnake(gl);
 
         // zde se bude volat ve?ker? dal?? vykreslov?n? hry
         gl.glEnable(GL10.GL_BLEND);
@@ -61,5 +60,39 @@ public class SnakeRenderer implements GLSurfaceView.Renderer {
         gl.glBlendFunc(GL10.GL_ONE, GL10.GL_ONE);
 
         snake.loadTexture(gl, Engine.SNAKE_SPRITE_SHEET, Engine.context);
+    }
+
+    private void drawSnake(GL10 gl) {
+        gl.glMatrixMode(GL10.GL_MODELVIEW);
+        gl.glLoadIdentity();
+        gl.glPushMatrix();
+        gl.glTranslatef(snake.x, snake.y, 0f);
+
+        gl.glMatrixMode(GL10.GL_TEXTURE);
+        gl.glLoadIdentity();
+
+        switch (Engine.action) {
+            case Engine.SNAKE_RIGHT:
+                snake.x += snake.speed;
+                snake.action = Engine.SNAKE_RIGHT;
+                break;
+            case Engine.SNAKE_LEFT:
+                snake.x -= snake.speed;
+                snake.action = Engine.SNAKE_LEFT;
+                break;
+            case Engine.SNAKE_UP:
+                snake.y += snake.speed;
+                snake.action = Engine.SNAKE_UP;
+                break;
+            case Engine.SNAKE_DOWN:
+                snake.y -= snake.speed;
+                snake.action = Engine.SNAKE_DOWN;
+                break;
+        }
+
+        gl.glScalef(0.05f, 0.05f, 0.05f);
+        snake.draw(gl);
+        gl.glPopMatrix();
+        gl.glLoadIdentity();
     }
 }
